@@ -39,6 +39,20 @@ app.get('/notes', (req, res, next) => {
         .catch(next)
 })
 
+app.get('/notes/:note_id', (req, res, next) => {
+    const knexInstance = req.app.get('db')
+    NotesService.getById(knexInstance, req.params.note_id)
+        .then(note => {
+            if (!note) {
+                return res.status(404).json({
+                    error: { message: `Note doesn't exist` }
+                })
+            }
+            res.json(note)
+        })
+        .catch(next)
+})
+
 app.use(function errorHandler(error, req, res, next) {
     let response
     if (NODE_ENV === 'production') {
