@@ -94,8 +94,8 @@ describe('Notes Endpoints', function() {
             this.retries(3)
             const newNote = {
                 note_name: 'This new note',
-                content: 'This is a new note for testing.'
-                // folder: 1
+                content: 'This is a new note for testing.',
+                folder: 1
             }
 
             return supertest(app)
