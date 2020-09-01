@@ -90,15 +90,23 @@ describe('Notes Endpoints', function() {
     })
 
     describe(`POST /api/notes`, () => {
+        const testFolders = makeFoldersArray()
+
+        before('insert folders', () => {
+            return db
+                .into('noteful_folders')
+                .insert(testFolders)
+        })
+
         it(`creates a note, responding with 201 and the new note`, function() {
-            this.retries(3)
+            // this.retries(3)
             const newNote = {
                 note_name: 'This new note',
                 content: 'This is a new note for testing.',
                 folder: 1
             }
 
-            return supertest(app)
+            return supertest(app)    
                 .post('/api/notes')
                 .send(newNote)
                 .expect(201)
@@ -111,8 +119,8 @@ describe('Notes Endpoints', function() {
                 })
                 .then(postRes =>
                     supertest(app)
-                        .get/(`/api/notes/${postRes.body.id}`)
-                        .expect(postRest.body)    
+                        .get(`/api/notes/${postRes.body.id}`)
+                        .expect(postRes.body)    
                 )
         })
 
