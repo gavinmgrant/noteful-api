@@ -102,6 +102,7 @@ describe('Notes Endpoints', function() {
             // this.retries(3)
             const newNote = {
                 note_name: 'This new note',
+                modified: '9/2/2020, 12:00:00 PM',
                 content: 'This is a new note for testing.',
                 folder: 1
             }
@@ -129,6 +130,7 @@ describe('Notes Endpoints', function() {
         requiredFields.forEach(field => {
             const newNote = {
                 note_name: 'This new note',
+                modified: '9/2/2020, 12:00:00 PM',
                 content: 'This is a new note for testing.',
                 folder: 1
             }
